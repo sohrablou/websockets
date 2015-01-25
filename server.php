@@ -4,7 +4,7 @@
 require_once('./websockets.php');
 
 $db = sqlite_open('db.sqlite');###########
-$q = sqlite_query($db, 'CREATE TABLE messages (id int, msg TEXT)');###########
+//$q = sqlite_query($db, 'CREATE TABLE messages (id int, msg TEXT)');###########
 
 class BroadcastWebSocketServer extends WebSocketServer
 {
@@ -16,7 +16,6 @@ class BroadcastWebSocketServer extends WebSocketServer
 	protected function connected($user)
 	{
 		global $db;
-		//echo "Users: " . count($this->users) . "\n";
 		array_push($this->users, $user);
 		$q = sqlite_query($db, 'SELECT * FROM messages');###########
 		while($entry = sqlite_fetch_array($q))###########
